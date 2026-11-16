@@ -6,6 +6,7 @@ class Background : public juce::Component {
 
 public:
     Background();
+
     void paint (juce::Graphics&) override;
 
 

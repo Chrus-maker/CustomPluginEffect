@@ -4,18 +4,17 @@
 
 #include "Background.h"
 
-#include "juce_graphics/image_formats/jpglib/jconfig.h"
-#include "public.sdk/source/vst/moduleinfo/jsoncxx.h"
-#include <juce_graphics/colour/juce_Colour.h>
-Background::Background()
-
-
-
-
-{
+Background::Background() {
 
 }
 
 void Background::paint(juce::Graphics& g) {
-    g.fillAll (juce::ColourGradient(juce::Colour(48, 184, 161), 40, 20, juce::Colour(39,49,10), 50,40, true));
+    const auto bounds = getLocalBounds().toFloat();
+    const juce::ColourGradient gradient(
+        juce::Colour(100, 200, 200), bounds.getX(), bounds.getY(),
+        juce::Colour(255, 255, 255), bounds.getRight(), bounds.getBottom(),
+        false);
+
+    g.setGradientFill(gradient);
+    g.fillRect(bounds);
 }

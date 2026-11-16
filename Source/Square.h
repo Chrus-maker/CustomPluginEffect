@@ -4,6 +4,7 @@
 
 //inherenit from the juce libriary
 //bc right now it doesn't know about juce
+//displays the picture of tyler the creator
 class Square : public juce::Component
 {
 public:

@@ -14,4 +14,5 @@ void Trashwang::paint(juce::Graphics& g) {
                getLocalBounds(),
                juce::Justification::centred,
                true); // 'true' enables word-wrap if text is too long
+
 }

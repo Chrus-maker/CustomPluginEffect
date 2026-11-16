@@ -10,7 +10,8 @@ AudioPluginAudioProcessor::AudioPluginAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), state(*this, nullptr,
+                           "parameter", createParameters())
 {
 }
 
@@ -130,6 +131,8 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
+    const int numSamples = buffer.getNumSamples();
+    const int numChannels = buffer.getNumChannels();
 
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
@@ -146,14 +149,28 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-
-    {
+    // if (saturtioneffect.currentTime.size() != static_cast<std::size_t>(numChannels)) {
+    //     return;
+    // }
+    for (int channel = 0; channel < totalNumInputChannels; ++channel) {
         auto* channelData = buffer.getWritePointer (channel);
+        for (int sample = 0; sample < numSamples; ++sample) {
+            channelData[sample] = saturtioneffect.processSample(channelData[sample]);
+        }
+
         juce::ignoreUnused (channelData);
+
+        float gain = state.getRawParameterValue("gainknob")->load();
+        bool shouldbeplaying = static_cast<bool>(state.getRawParameterValue("play")->load());
+        saturtioneffect.setGain(gain);
+
+        saturtioneffect.setDrive(shouldbeplaying ? 2.0f : 0.0f);
+
+
+
         // ..do something to the data..
     }
-    sinewave.process(buffer);
+    // sinewave.process(buffer);
 }
 
 //==============================================================================
@@ -188,4 +205,16 @@ void AudioPluginAudioProcessor::setStateInformation (const void* data, int sizeI
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new AudioPluginAudioProcessor();
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout AudioPluginAudioProcessor::createParameters()
+{
+
+return {
+    std::make_unique<juce::AudioParameterFloat>(
+        juce::ParameterID{"gainknob"}, "Gain",
+0.f, 6.0f, 3.0f),
+    std::make_unique<juce::AudioParameterBool>(juce::ParameterID{"play"}, "Bypass", true)
+
+};
 }
