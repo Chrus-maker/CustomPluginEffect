@@ -8,7 +8,8 @@ using namespace std::chrono_literals;
 // Decribes the look of the plugin
 //==============================================================================
 AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p)
-    : AudioProcessorEditor (&p), processorRef (p), freqSliderAttachtment(processorRef.getState(), "gainknob", intensity_Slider),
+    : AudioProcessorEditor (&p), processorRef (p), gainSliderAttachtment(processorRef.getState(), "gainknob", gain_Slider),
+    driveSliderAttachment(processorRef.getState(), "driveknob", drive_Slider),
     playButtonAttachment(processorRef.getState(), "play", playbutton)
 {
     juce::ignoreUnused (processorRef);
@@ -23,8 +24,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
 
     addAndMakeVisible(square);
     addAndMakeVisible(trashwang);
-
-    addAndMakeVisible(intensity_Slider);
+    addAndMakeVisible(drive_Slider);
+    addAndMakeVisible(gain_Slider);
     addAndMakeVisible(background);
     addAndMakeVisible(playbutton);
     addAndMakeVisible(frequencyLabel);
@@ -32,9 +33,12 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
 
     frequencyLabel.setJustificationType(juce::Justification::centred);
 
-    intensity_Slider.setMouseDragSensitivity(1000);
-    intensity_Slider.setSliderStyle (juce::Slider::SliderStyle::Rotary);
-    intensity_Slider.setNumDecimalPlacesToDisplay(0);
+    gain_Slider.setMouseDragSensitivity(1000);
+    gain_Slider.setSliderStyle (juce::Slider::SliderStyle::Rotary);
+    gain_Slider.setNumDecimalPlacesToDisplay(0);
+    drive_Slider.setSliderStyle (juce::Slider::SliderStyle::Rotary);
+    gain_Slider.setNumDecimalPlacesToDisplay(0);
+
     frequencyLabel.setColour(juce::Label::textColourId, juce::Colours::black);
 
 
@@ -44,8 +48,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
 
     playbutton.setColour(juce::TextButton::ColourIds::buttonOnColourId, juce::Colour(53,124,154));
     playbutton.setColour(juce::TextButton::ColourIds::buttonColourId, juce::Colour(53,124,241));
-    intensity_Slider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colour(255,255,255) );
-    intensity_Slider.setTextValueSuffix("hz");
+    gain_Slider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colour(255,255,255) );
+    gain_Slider.setTextValueSuffix("hz");
 
     playbutton.onClick=[this]() {
       //change the state of the button when clicked
@@ -54,9 +58,9 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
         playbutton.setButtonText(isPlaying ? "Playing" : "Bypass");
     };
 
-    intensity_Slider.setColour(3,juce::Colours::red);
+    gain_Slider.setColour(3,juce::Colours::red);
     background.toBack();
-    intensity_Slider.setTextBoxStyle(juce::Slider::TextBoxBelow, true,100,50);
+    gain_Slider.setTextBoxStyle(juce::Slider::TextBoxBelow, true,100,50);
 
 
 
@@ -82,13 +86,21 @@ void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g)
 
 void AudioPluginAudioProcessorEditor::resized()
 {
-    intensity_Slider.setBounds(100,300,200,200);
+    gain_Slider.setBounds(10,300,200,200);
+    drive_Slider.setBounds(200,300,200,200);
+
     square.setBounds(100,50,200,200); // picture
+
     background.setBounds (getLocalBounds());
+
     trashwang.setBounds (90, 190, 200, 200);
-    intensity_Slider.setColour(30,juce::Colours::red);
-    intensity_Slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow,
+
+    gain_Slider.setColour(30,juce::Colours::red);
+    gain_Slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow,
     FALSE, 80,50);
+    drive_Slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow,
+FALSE, 80,50);
+
     playbutton.setBounds(getWidth() / 2 - 50, 550, 100, 20);
     frequencyLabel.setBounds(getWidth() / 2 - 50, 280, 100, 20);
     // This is generally where you'll want to lay out the positions of any

@@ -161,7 +161,9 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         juce::ignoreUnused (channelData);
 
         float gain = state.getRawParameterValue("gainknob")->load();
+        float drive = state.getRawParameterValue("driveknob")->load();
         bool shouldbeplaying = static_cast<bool>(state.getRawParameterValue("play")->load());
+        saturtioneffect.setDrive(drive);
         saturtioneffect.setGain(gain);
 
         saturtioneffect.setDrive(shouldbeplaying ? 2.0f : 0.0f);
@@ -213,7 +215,10 @@ juce::AudioProcessorValueTreeState::ParameterLayout AudioPluginAudioProcessor::c
 return {
     std::make_unique<juce::AudioParameterFloat>(
         juce::ParameterID{"gainknob"}, "Gain",
-0.f, 6.0f, 3.0f),
+1.0f, 6.0f, 2.0f),
+    std::make_unique<juce::AudioParameterFloat>(
+       juce::ParameterID{"driveknob"}, "Drive",
+0.f, 20.0f, 2.0f),
     std::make_unique<juce::AudioParameterBool>(juce::ParameterID{"play"}, "Bypass", true)
 
 };

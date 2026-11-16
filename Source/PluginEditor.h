@@ -20,7 +20,8 @@ public:
 private:
  //created an object in the editor
     Square square;
-    juce::Slider intensity_Slider;
+    juce::Slider gain_Slider;
+    juce::Slider drive_Slider;
     juce::ToggleButton TylerButton;
     Trashwang trashwang;
     Background background;
@@ -31,7 +32,8 @@ private:
     // access the processor object that created it.
     AudioPluginAudioProcessor& processorRef;
 
-    juce::AudioProcessorValueTreeState::SliderAttachment freqSliderAttachtment;
+    juce::AudioProcessorValueTreeState::SliderAttachment gainSliderAttachtment;
+    juce::AudioProcessorValueTreeState::SliderAttachment driveSliderAttachment;
     juce::AudioProcessorValueTreeState::ButtonAttachment playButtonAttachment;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessorEditor)
