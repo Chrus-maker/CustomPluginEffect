@@ -8,5 +8,8 @@ public:
     Background();
 
     void paint (juce::Graphics&) override;
+    void BackgroundState(bool isColoured);
+private:
+    bool coloured = false;
 
 };

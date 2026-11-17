@@ -33,6 +33,7 @@ private:
     void timerCallback() override {
         bool highdrive = (drive_Slider.getValue() > 10);
         square.Imagestate(highdrive);
+        background.BackgroundState(highdrive);
     }
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
