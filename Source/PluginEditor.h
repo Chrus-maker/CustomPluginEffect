@@ -5,9 +5,10 @@
 #include "Square.h"
 #include "Trashwang.h"
 #include <juce_gui_basics/juce_gui_basics.h>
+#include <BinaryData.h>
 
 //==============================================================================
-class AudioPluginAudioProcessorEditor final : public juce::AudioProcessorEditor
+class AudioPluginAudioProcessorEditor final : public juce::AudioProcessorEditor, private juce::Timer
 {
 public:
     explicit AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor&);
@@ -26,8 +27,13 @@ private:
     Trashwang trashwang;
     Background background;
     juce::TextButton playbutton;
-    juce::Label frequencyLabel{"FrequencyLabel", "Frequency"};
+    juce::Label driveLabel{"driveLabel", "Drive"};
+    juce::Label gainLabel{"gainLabel", "Gain"};
 
+    void timerCallback() override {
+        bool highdrive = (drive_Slider.getValue() > 10);
+        square.Imagestate(highdrive);
+    }
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     AudioPluginAudioProcessor& processorRef;
@@ -49,7 +55,6 @@ class TimedComponent : public juce::Component, public juce::Timer
     ~TimedComponent() override;
     void timerCallback() override;
 };
-
 
 
 

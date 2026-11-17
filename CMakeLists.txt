@@ -30,6 +30,7 @@ CPMAddPackage(
 juce_add_binary_data(PluginAssets
         SOURCES
         Source/Wolf_Cover2.jpg
+        Source/tyler.jpg
 )
 
 # Make sure you include any new source files here
@@ -52,7 +53,7 @@ set(SourceFiles
 
 # Change these to your own preferences
 juce_add_plugin(${PROJECT_NAME}
-        COMPANY_NAME chrisp
+        COMPANY_NAME KrispSounds
         IS_SYNTH FALSE
         NEEDS_MIDI_INPUT FALSE
         NEEDS_MIDI_OUTPUT FALSE
@@ -63,8 +64,9 @@ juce_add_plugin(${PROJECT_NAME}
         PLUGIN_MANUFACTURER_CODE Tap1
         PLUGIN_CODE Reg0
         FORMATS VST3 AU Standalone
-        PRODUCT_NAME "Haely Saturator"
+        PRODUCT_NAME "TrashWang!"
 )
+
 
 # How we want our SourceFiles to appear in our IDE
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SourceFiles})

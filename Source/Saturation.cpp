@@ -13,6 +13,7 @@ Saturation::~Saturation() {
 
 float Saturation::processSample(float inputSample) {
     float driven = inputSample * drive;
+    
     float clipped = std::tanh(driven);
     return clipped * gain;
 }

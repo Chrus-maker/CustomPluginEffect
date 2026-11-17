@@ -12,7 +12,9 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     driveSliderAttachment(processorRef.getState(), "driveknob", drive_Slider),
     playButtonAttachment(processorRef.getState(), "play", playbutton)
 {
+
     juce::ignoreUnused (processorRef);
+    startTimer(100);
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     //
@@ -28,10 +30,12 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     addAndMakeVisible(gain_Slider);
     addAndMakeVisible(background);
     addAndMakeVisible(playbutton);
-    addAndMakeVisible(frequencyLabel);
+    addAndMakeVisible(driveLabel);
+    addAndMakeVisible(gainLabel);
 
 
-    frequencyLabel.setJustificationType(juce::Justification::centred);
+    driveLabel.setJustificationType(juce::Justification::centred);
+    gainLabel.setJustificationType(juce::Justification::centred);
 
     gain_Slider.setMouseDragSensitivity(1000);
     gain_Slider.setSliderStyle (juce::Slider::SliderStyle::Rotary);
@@ -39,7 +43,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     drive_Slider.setSliderStyle (juce::Slider::SliderStyle::Rotary);
     gain_Slider.setNumDecimalPlacesToDisplay(0);
 
-    frequencyLabel.setColour(juce::Label::textColourId, juce::Colours::black);
+    driveLabel.setColour(juce::Label::textColourId, juce::Colours::black);
+    gainLabel.setColour(juce::Label::textColourId, juce::Colours::black);
 
 
     playbutton.setButtonText("Playing");
@@ -102,7 +107,9 @@ void AudioPluginAudioProcessorEditor::resized()
 FALSE, 80,50);
 
     playbutton.setBounds(getWidth() / 2 - 50, 550, 100, 20);
-    frequencyLabel.setBounds(getWidth() / 2 - 50, 280, 100, 20);
+    driveLabel.setBounds(250, 280, 100, 20);
+    gainLabel.setBounds(60, 280, 100, 20);
+
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
 }

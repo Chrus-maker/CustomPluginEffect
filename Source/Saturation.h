@@ -23,7 +23,7 @@ public:
     std::vector<float> currentTime;
     private:
     float drive = 2.0f;
-    float gain = 5.7f;
+    float gain = 3.7f;
 
 
 

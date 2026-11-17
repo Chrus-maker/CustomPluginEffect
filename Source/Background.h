@@ -9,5 +9,4 @@ public:
 
     void paint (juce::Graphics&) override;
 
-
 };
