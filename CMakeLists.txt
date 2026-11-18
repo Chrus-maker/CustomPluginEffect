@@ -41,8 +41,6 @@ set(SourceFiles
         Source/PluginProcessor.h
         Source/Square.cpp
         Source/Square.h
-        Source/Sinewave.cpp
-        Source/Sinewave.h
         Source/Trashwang.cpp
         Source/Trashwang.h
         Source/Background.cpp

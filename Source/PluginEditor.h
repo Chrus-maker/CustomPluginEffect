@@ -28,7 +28,8 @@ private:
     Background background;
     juce::TextButton playbutton;
     juce::Label driveLabel{"driveLabel", "Drive"};
-    juce::Label gainLabel{"gainLabel", "Gain"};
+    juce::Label intensityLabel{"gainLabel", "Intensity"};
+    juce::Label companyLabel{"companyLabel", "Krisp Sounds"};
 
     void timerCallback() override {
         bool highdrive = (drive_Slider.getValue() > 10);
