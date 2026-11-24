@@ -32,10 +32,8 @@ juce_add_binary_data(PluginAssets
         Source/Wolf_Cover2.jpg
         Source/tyler.jpg
         Source/Image_background.jpg
-        Source/cherrybombimage.jpg
-        Source/cherrycolorbackground.png
-        Source/forest.jpg
         Source/flowerbackground.jpg
+        Source/Wolf_Remodel.png
 )
 
 # Make sure you include any new source files here

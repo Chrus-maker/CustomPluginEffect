@@ -32,17 +32,16 @@ public:
         g.setColour(juce::Colours::transparentBlack);
         g.fillEllipse(dialArea);
 
-
+        const juce::ColourGradient gradient(
+            juce::Colour(100,200,200), centreX, centreY,
+            juce::Colour(255,255,255), centreX-radius, centreY-radius, false);
 
         g.setColour(juce::Colours::teal);
+        g.setGradientFill(gradient);
         juce::Path dialTick;
         dialTick.addRectangle (0.0f, -radius, outlineThickness, radius);
         g.fillPath (dialTick, juce::AffineTransform::rotation (angle).translated (centreX, centreY));
 
-
-        const juce::ColourGradient gradient(
-            juce::Colour(100,200,200), centreX, centreY,
-            juce::Colour(255,255,255), centreX-radius, centreY-radius, false);
         g.setGradientFill(gradient);
         g.drawEllipse (dialArea, outlineThickness);
 

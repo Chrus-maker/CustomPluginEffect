@@ -6,8 +6,8 @@
 #include "BinaryData.h"
 
 TylerPicture::TylerPicture()
-    : coverImage (juce::ImageCache::getFromMemory (BinaryData::Wolf_Cover2_jpg,
-                                                   BinaryData::Wolf_Cover2_jpgSize)),
+    : coverImage (juce::ImageCache::getFromMemory (BinaryData::Wolf_Remodel_png,
+                                                   BinaryData::Wolf_Remodel_pngSize)),
     newImage(juce::ImageCache::getFromMemory(BinaryData::tyler_jpg,
         BinaryData::tyler_jpgSize))
 
