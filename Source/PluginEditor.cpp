@@ -56,24 +56,17 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     drive_Slider.setSliderStyle (juce::Slider::SliderStyle::Rotary);
     gain_Slider.setNumDecimalPlacesToDisplay(0);
 
-    VolumeLabel.setColour(juce::Label::textColourId, juce::Colours::black);
-    // VolumeLabel.setFont(juce::Font());
+    VolumeLabel.setColour(juce::Label::textColourId, juce::Colours::yellowgreen);
+    DriveLabel.setColour(juce::Label::textColourId, juce::Colours::yellowgreen);
     auto list = juce::Font::findAllTypefaceNames();
-    juce::Font customFont (juce::FontOptions("Poleno", 20.0f, juce::Font::bold));
+    juce::Font customFont (juce::FontOptions(list[57], 20.0f, juce::Font::bold));
 
     VolumeLabel.setFont(customFont);
     DriveLabel.setFont(customFont);
-    auto textColor = 100;
-    DriveLabel.setColour(textColor, juce::Colour(23,255,255));
+
     companyLabel.setFont(customFont);
-   // VolumeLabel.setFont(juce::Font(juce::FontOptions().withName(list[40])));
-    //DriveLabel.setFont(juce::Font(juce::FontOptions().withName(list[40])));
-    //VolumeLabel.setFont(juce::FontOptions().withUnderline());
-    //DriveLabel.setFont(juce::FontOptions().withUnderline());
-    //30
 
 
-    DriveLabel.setColour(juce::Label::textColourId, juce::Colours::black);
 
 
     playbutton.setButtonText("Playing");
