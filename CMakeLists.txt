@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.24)
 
 # Change to your project name
-project(SimpleJucePluginTemplate VERSION 0.0.1)
+project(SimpleJucePluginTemplate VERSION 1.0.1)
 
 
 set(CMAKE_CXX_STANDARD 17)
@@ -31,6 +31,11 @@ juce_add_binary_data(PluginAssets
         SOURCES
         Source/Wolf_Cover2.jpg
         Source/tyler.jpg
+        Source/Image_background.jpg
+        Source/cherrybombimage.jpg
+        Source/cherrycolorbackground.png
+        Source/forest.jpg
+        Source/flowerbackground.jpg
 )
 
 # Make sure you include any new source files here
@@ -39,14 +44,18 @@ set(SourceFiles
         Source/PluginEditor.h
         Source/PluginProcessor.cpp
         Source/PluginProcessor.h
-        Source/Square.cpp
-        Source/Square.h
+        Source/TylerPicture.cpp
+        Source/TylerPicture.h
         Source/Trashwang.cpp
         Source/Trashwang.h
         Source/Background.cpp
         Source/Background.h
         Source/Saturation.cpp
         Source/Saturation.h
+
+
+
+
 )
 
 # Change these to your own preferences
@@ -62,7 +71,7 @@ juce_add_plugin(${PROJECT_NAME}
         PLUGIN_MANUFACTURER_CODE Tap1
         PLUGIN_CODE Reg0
         FORMATS VST3 AU Standalone
-        PRODUCT_NAME "TrashWang!"
+        PRODUCT_NAME "WolfSat"
 )
 
 

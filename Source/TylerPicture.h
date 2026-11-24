@@ -8,10 +8,10 @@
 //inherenit from the juce libriary
 //bc right now it doesn't know about juce
 //displays the picture of tyler the creator
-class Square : public juce::Component
+class TylerPicture : public juce::Component
 {
 public:
-    Square();
+    TylerPicture();
     void paint (juce::Graphics&) override;
     void resized() override;
     juce::Image coverImage;

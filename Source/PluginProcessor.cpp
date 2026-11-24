@@ -90,7 +90,7 @@ void AudioPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
     juce::ignoreUnused (samplesPerBlock);
-    sinewave.prepare(sampleRate, getTotalNumOutputChannels());
+
 }
 
 void AudioPluginAudioProcessor::releaseResources()
@@ -148,7 +148,7 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         juce::ignoreUnused (channelData);
 
         float gain = state.getRawParameterValue("gainknob")->load();
-        float drive = state.getRawParameterValue("driveknob")->load();
+        float drive = state.getRawParameterValue("volumeknob")->load();
         bool shouldbeplaying = static_cast<bool>(state.getRawParameterValue("play")->load());
         saturtioneffect.setDrive(drive);
         saturtioneffect.setGain(gain);
@@ -201,9 +201,9 @@ juce::AudioProcessorValueTreeState::ParameterLayout AudioPluginAudioProcessor::c
 return {
     std::make_unique<juce::AudioParameterFloat>(
         juce::ParameterID{"gainknob"}, "Gain",
-1.0f, 6.0f, 2.0f),
+1.0f, 5.0f, 2.0f),
     std::make_unique<juce::AudioParameterFloat>(
-       juce::ParameterID{"driveknob"}, "Drive",
+       juce::ParameterID{"volumeknob"}, "Volume",
 0.f, 20.0f, 2.0f),
     std::make_unique<juce::AudioParameterBool>(juce::ParameterID{"play"}, "Bypass", true)
 

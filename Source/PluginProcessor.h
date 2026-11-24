@@ -3,7 +3,7 @@
 #include <juce_audio_processors/juce_audio_processors.h>
 
 #include "Saturation.h"
-#include "Sinewave.h"
+
 
 //==============================================================================
 class AudioPluginAudioProcessor final : public juce::AudioProcessor
@@ -50,7 +50,7 @@ public:
 private:
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameters();
     Saturation saturtioneffect;
-    Sinewave sinewave;
+
     juce::AudioProcessorValueTreeState state;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessor)

@@ -9,6 +9,9 @@ public:
 
     void paint (juce::Graphics&) override;
     void BackgroundState(bool isColoured);
+    juce::Image backgroundImage;
+    juce::Image newbackgroundImage;
+    int contrast = 183;
 private:
     bool coloured = false;
 
