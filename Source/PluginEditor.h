@@ -39,9 +39,14 @@ public:
         g.setColour(juce::Colours::teal);
         g.setGradientFill(gradient);
         juce::Path dialTick;
+
+
+
+
+
         dialTick.addRectangle (0.0f, -radius, outlineThickness, radius);
         g.fillPath (dialTick, juce::AffineTransform::rotation (angle).translated (centreX, centreY));
-
+     ;
         g.setGradientFill(gradient);
         g.drawEllipse (dialArea, outlineThickness);
 

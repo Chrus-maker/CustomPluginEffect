@@ -14,6 +14,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     playButtonAttachment(processorRef.getState(), "play", playbutton)
 {
 
+
+
     juce::ignoreUnused (processorRef);
     startTimer(100);
     // Make sure that before the constructor has finished, you've set the
@@ -56,8 +58,9 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     drive_Slider.setSliderStyle (juce::Slider::SliderStyle::Rotary);
     gain_Slider.setNumDecimalPlacesToDisplay(0);
 
-    VolumeLabel.setColour(juce::Label::textColourId, juce::Colours::yellowgreen);
-    DriveLabel.setColour(juce::Label::textColourId, juce::Colours::yellowgreen);
+
+    VolumeLabel.setColour(juce::Label::textColourId, juce::Colours::darkblue);
+    DriveLabel.setColour(juce::Label::textColourId, juce::Colours::darkblue);
     auto list = juce::Font::findAllTypefaceNames();
     juce::Font customFont (juce::FontOptions(list[57], 20.0f, juce::Font::bold));
 
