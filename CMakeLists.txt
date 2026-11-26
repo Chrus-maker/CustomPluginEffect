@@ -29,12 +29,11 @@ CPMAddPackage(
 
 juce_add_binary_data(PluginAssets
         SOURCES
-        Source/Wolf_Cover2.jpg
         Source/tyler.jpg
         Source/Image_background.jpg
         Source/flowerbackground.jpg
         Source/Wolf_Remodel.png
-        Source/boy.jpg
+
         Source/boy_Remodel.png
 
 )
