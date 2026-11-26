@@ -11,7 +11,7 @@ using namespace std::chrono_literals;
 AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p)
     : AudioProcessorEditor (&p), processorRef (p), gainSliderAttachtment(processorRef.getState(), "gainknob", gain_Slider),
     driveSliderAttachment(processorRef.getState(), "volumeknob", drive_Slider),
-    playButtonAttachment(processorRef.getState(), "play", playbutton)
+    playButtonAttachment(processorRef.getState(), "play", ImageButton)
 {
 
 
@@ -32,7 +32,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     addAndMakeVisible(drive_Slider);
     addAndMakeVisible(gain_Slider);
     addAndMakeVisible(background);
-    //addAndMakeVisible(playbutton);
+    addAndMakeVisible(ImageButton);
     addAndMakeVisible(VolumeLabel);
     addAndMakeVisible(DriveLabel);
     addAndMakeVisible(companyLabel);
@@ -59,8 +59,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     gain_Slider.setNumDecimalPlacesToDisplay(0);
 
 
-    VolumeLabel.setColour(juce::Label::textColourId, juce::Colours::darkblue);
-    DriveLabel.setColour(juce::Label::textColourId, juce::Colours::darkblue);
+    VolumeLabel.setColour(juce::Label::textColourId, juce::Colours::cornflowerblue);
+    DriveLabel.setColour(juce::Label::textColourId, juce::Colours::cornflowerblue);
     auto list = juce::Font::findAllTypefaceNames();
     juce::Font customFont (juce::FontOptions(list[57], 20.0f, juce::Font::bold));
 
@@ -72,20 +72,20 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
 
 
 
-    playbutton.setButtonText("Playing");
-    playbutton.setToggleState(true, juce::NotificationType::dontSendNotification);
-    playbutton.setClickingTogglesState(true);
+    ImageButton.setButtonText("Flowerboy");
+    ImageButton.setToggleState(true, juce::NotificationType::dontSendNotification);
+    ImageButton.setClickingTogglesState(true);
 
-    playbutton.setColour(juce::TextButton::ColourIds::buttonOnColourId, juce::Colour(53,124,154));
-    playbutton.setColour(juce::TextButton::ColourIds::buttonColourId, juce::Colour(53,124,241));
+    ImageButton.setColour(juce::TextButton::ColourIds::buttonOnColourId, juce::Colours::orangered);
+    ImageButton.setColour(juce::TextButton::ColourIds::buttonColourId, juce::Colour(53,124,241));
     gain_Slider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colour(255,255,255) );
     gain_Slider.setTextValueSuffix("");
 
-    playbutton.onClick=[this]() {
+    ImageButton.onClick=[this]() {
       //change the state of the button when clicked
 
-        const bool isPlaying = playbutton.getToggleState();
-        playbutton.setButtonText(isPlaying ? "Playing" : "Bypass");
+        const bool isPlaying = ImageButton.getToggleState();
+        ImageButton.setButtonText(isPlaying ? "FlowerBoy" : "Wolf");
     };
 
     gain_Slider.setColour(3,juce::Colours::red);
@@ -138,7 +138,7 @@ void AudioPluginAudioProcessorEditor::resized()
     drive_Slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox,
 FALSE, 80,50);
 
-    playbutton.setBounds(getWidth() / 2 - 50, 550, 100, 20);
+    ImageButton.setBounds(getWidth() / 2 - 50, 550, 100, 20);
 
     VolumeLabel.setBounds(width/2, height/2, 150, 20);
     DriveLabel.setBounds(width/16, height/2, 150, 20);

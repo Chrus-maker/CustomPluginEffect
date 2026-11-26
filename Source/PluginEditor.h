@@ -17,6 +17,7 @@ public:
         float rotaryStartAngle, float rotaryEndAngle, juce::Slider &slider) override
     {
 
+
         auto wolf = juce::ImageCache::getFromMemory(BinaryData::Image_background_jpg, BinaryData::Image_background_jpgSize);
         juce::ignoreUnused (slider);
 
@@ -28,7 +29,7 @@ public:
         const float angle = rotaryStartAngle + sliderPos * (rotaryEndAngle - rotaryStartAngle);
 
         const juce::Rectangle<float> dialArea (centreX - radius, centreY - radius, diameter, diameter);
-
+        //g.drawRect(dialArea);
         g.setColour(juce::Colours::transparentBlack);
         g.fillEllipse(dialArea);
 
@@ -39,14 +40,17 @@ public:
         g.setColour(juce::Colours::teal);
         g.setGradientFill(gradient);
         juce::Path dialTick;
+        juce::Path markTick1;
 
 
 
 
 
-        dialTick.addRectangle (0.0f, -radius, outlineThickness, radius);
+
+        dialTick.addRectangle (0.0f, -radius, outlineThickness, radius-40);
         g.fillPath (dialTick, juce::AffineTransform::rotation (angle).translated (centreX, centreY));
-     ;
+
+
         g.setGradientFill(gradient);
         g.drawEllipse (dialArea, outlineThickness);
 
@@ -74,14 +78,14 @@ private:
     Trashwang trashwang;
     OtherLookAndFeel otherLookAndFeel;
     Background background;
-    juce::TextButton playbutton;
+    juce::TextButton ImageButton;
     juce::Label VolumeLabel{"VolumeLabel", "Volume"};
     juce::Label DriveLabel{"gainLabel", "Drive"};
     juce::Label companyLabel{"companyLabel", "Krisp Sounds"};
 
 
     void timerCallback() override {
-        bool highdrive = (gain_Slider.getValue() > 3.5);
+        bool highdrive = (ImageButton.getToggleState() == FALSE);
         square.Imagestate(highdrive);
         background.BackgroundState(highdrive);
 

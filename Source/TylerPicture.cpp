@@ -8,8 +8,8 @@
 TylerPicture::TylerPicture()
     : coverImage (juce::ImageCache::getFromMemory (BinaryData::Wolf_Remodel_png,
                                                    BinaryData::Wolf_Remodel_pngSize)),
-    newImage(juce::ImageCache::getFromMemory(BinaryData::boy_jpg,
-        BinaryData::boy_jpgSize))
+    newImage(juce::ImageCache::getFromMemory(BinaryData::boy_Remodel_png,
+        BinaryData::boy_Remodel_pngSize))
 
 
 {
